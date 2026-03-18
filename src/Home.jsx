@@ -1,0 +1,292 @@
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import "./Home.css";
+
+// function Home() {
+//   return (
+//     <div className="home-page">
+
+//       {/* PARALLAX HERO */}
+//       <section className="parallax-hero">
+//         <div className="hero-overlay"></div>
+
+//         <div className="hero-content">
+//           <h1>Welcome to FoodZone</h1>
+//           <p>Delicious food delivered to your doorstep 🍽️</p>
+//           <Link to="/veg" className="hero-btn">Explore Menu</Link>
+//         </div>
+//       </section>
+
+//       {/* ABOUT SECTION */}
+//       <section className="about-section">
+//         <h2>Why Choose FoodZone?</h2>
+//         <p>
+//           We serve freshly cooked meals with the best ingredients.  
+//           Fast delivery, multiple categories and wide range of food items.
+//         </p>
+
+//         <div className="about-cards">
+//           <div className="about-card">
+//             <h3>🔥 Freshly Cooked</h3>
+//             <p>We prepare everything fresh when you order.</p>
+//           </div>
+
+//           <div className="about-card">
+//             <h3>⏱️ Fast Delivery</h3>
+//             <p>Get your food hot within minutes.</p>
+//           </div>
+
+//           <div className="about-card">
+//             <h3>🍽️ 100+ Dishes</h3>
+//             <p>Explore a large variety across 10 categories.</p>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* MENU CATEGORIES */}
+//       {/* <div className="categories">
+//         <h2 className="section-title">Explore Our Menu</h2>
+
+//         <div className="cards-grid">
+//           {[
+//             { src: "/images/veg.jpg", title: "Veg Items", link: "/veg", color: "success" },
+//             { src: "/images/nonveg.jpg", title: "Non-Veg Items", link: "/nonveg", color: "danger" },
+//             { src: "/images/sweets.jpg", title: "Sweets", link: "/sweets", color: "warning" },
+//             { src: "/images/break.jpg", title: "Breakfast", link: "/breakfast", color: "info" },
+//             { src: "/images/snacks.jpg", title: "Snacks", link: "/snacks", color: "primary" },
+//             { src: "/images/drinks.jpg", title: "Drinks", link: "/drinks", color: "warning" },
+//             { src: "/images/fastfood.jpg", title: "Fast Food Corner", link: "/fastfood", color: "info" },
+//             { src: "/images/desserts.jpg", title: "Desserts", link: "/desserts", color: "primary" },
+//             { src: "/images/soups.jpg", title: "Soups", link: "/soups", color: "success" },
+//             { src: "/images/bakery.jpg", title: "Bakery", link: "/bakery", color: "danger" }
+//           ].map((item, index) => (
+//             <div className="card menu-card" key={index}>
+//               <img src={item.src} alt={item.title} />
+//               <h5>{item.title}</h5>
+//               <Link to={item.link} className={`btn btn-${item.color} w-100`}>
+//                 View {item.title}
+//               </Link>
+//             </div>
+//           ))}
+//         </div>
+//       </div> */}
+
+//       {/* POPULAR ITEMS SECTION */}
+//       <section className="popular-section">
+//         <h2>Popular Items</h2>
+
+//         <div className="popular-grid">
+//           <div className="popular-card">
+//             <img src="/images/chicken-biryani.jpg" alt="biryani" />
+//             <h4>Chicken Biryani</h4>
+//           </div>
+
+//           <div className="popular-card">
+//             <img src="/images/paneer.jpg" alt="paneer" />
+//             <h4>Paneer Butter Masala</h4>
+//           </div>
+
+//           <div className="popular-card">
+//             <img src="/images/veg-burger.jpg" alt="burger" />
+//             <h4>Veg Burger</h4>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* OFFER BANNER */}
+//       <section className="offer-banner">
+//         <h2>🎉 Flat 20% Off on Your First Order!</h2>
+//         <p>Use code: <strong>WELCOME20</strong></p>
+//         <Link to="/snacks" className="btn btn-light mt-3">Order Now</Link>
+//       </section>
+
+//       {/* TESTIMONIALS */}
+//       <section className="testimonials">
+//         <h2>What Our Customers Say</h2>
+
+//         <div className="test-grid">
+//           <div className="test-card">
+//             <p>"Amazing taste and super fast delivery!"</p>
+//             <h5>- Swathi</h5>
+//           </div>
+
+//           <div className="test-card">
+//             <p>"Wide variety and everything is fresh."</p>
+//             <h5>- Ajay</h5>
+//           </div>
+
+//           <div className="test-card">
+//             <p>"My go-to food delivery app now!"</p>
+//             <h5>- Sireesha</h5>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* CONTACT STRIP */}
+//       <section className="contact-strip">
+//         <h2>Need Help or Want to Order Quickly?</h2>
+//         <p>Call us at: <strong>+91 9392757779</strong></p>
+//         <Link to="/contact" className="btn btn-danger">Contact Us</Link>
+//       </section>
+
+//     </div>
+//   );
+// }
+
+// export default Home;
+
+
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Home.css";
+
+function Home() {
+
+  const aboutData = [
+    {
+      title: "🔥 Freshly Cooked",
+      text: "We prepare everything fresh when you order."
+    },
+    {
+      title: "⏱️ Fast Delivery",
+      text: "Get your food hot within minutes."
+    },
+    {
+      title: "🍽️ 100+ Dishes",
+      text: "Explore a large variety across 10 categories."
+    }
+  ];
+
+  const popularItems = [
+    {
+      img:"/nonvegimages/chickenbiryani.jpg",
+      name: "Chicken Biryani",
+      link: "/nonveg"
+    },
+    {
+      img:  "/vegimages/paneer-butter-masala.jpg",
+      name: "Paneer Butter Masala",
+       link: "/veg"
+    },
+    {
+      img: "/milkimages/rasmalai.jpg",
+      name: "Rasmalai",
+       link: "/milk"
+    },
+    {
+      img: "/chocolatesimages/chocolatelavacake.jpg",
+      name: "Chocolate Lava Cake",
+       link: "/chocolates="
+    }
+  ];
+
+  const testimonials = [
+    {
+      text: "Amazing taste and super fast delivery!",
+      name: "Swathi"
+    },
+    {
+      text: "Wide variety and everything is fresh.",
+      name: "Ajay"
+    },
+    {
+      text: "My go-to food delivery app now!",
+      name: "Sireesha"
+    }
+  ];
+
+  return (
+    <div className="home-page">
+
+      <section className="parallax-hero">
+
+  <div className="fire-bg"></div>   {/* 🔥 LIVE FIRE */}
+
+  <div className="hero-overlay"></div>
+
+  <div className="hero-content">
+    <h1>Welcome to FoodZone</h1>
+    <p>Delicious food delivered to your doorstep 🍽️</p>
+    <a href="/veg" className="hero-btn">Explore Menu</a>
+  </div>
+
+</section>
+      {/* ABOUT */}
+      <section className="about-section">
+        <h2>Why Choose FoodZone?</h2>
+        <p>
+          We serve freshly cooked meals with the best ingredients.
+          Fast delivery, multiple categories and wide range of food items.
+        </p>
+
+        <div className="about-cards">
+
+          {aboutData.map((item, index) => (
+            <div className="about-card" key={index}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+      {/* POPULAR ITEMS */}
+      <section className="popular-section">
+  <h2>Popular Items</h2>
+
+  <div className="popular-grid">
+
+    {popularItems.map((item, index) => (
+      <Link to={item.link} key={index} className="popular-card">
+
+        <img src={item.img} alt={item.name} />
+        <h4>{item.name}</h4>
+
+      </Link>
+    ))}
+
+  </div>
+</section>
+
+      {/* OFFER */}
+      <section className="offer-banner">
+        <h2>🎉 Flat 20% Off on Your First Order!</h2>
+        <p>Use code: <strong>WELCOME20</strong></p>
+
+        <Link to="/NonVeg" className="offer-btn">
+          Order Now
+        </Link>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="testimonials">
+        <h2>What Our Customers Say</h2>
+
+        <div className="test-grid">
+
+          {testimonials.map((item, index) => (
+            <div className="test-card" key={index}>
+              <p>"{item.text}"</p>
+              <h5>- {item.name}</h5>
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section className="contact-strip">
+        <h2>Need Help or Want to Order Quickly?</h2>
+        <p>Call us at: <strong>+91 9392757779</strong></p>
+
+        <Link to="/contactus" className="contact-btn">
+          Contact Us
+        </Link>
+      </section>
+
+    </div>
+  );
+}
+
+export default Home;

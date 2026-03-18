@@ -1,0 +1,118 @@
+/* PAGE BACKGROUND */
+.register-page{
+  position: relative;                 /* ✅ FIXED (was fixed) */
+  margin-top: 0;                   /* below navbar */
+
+  width: 100%;
+  min-height: calc(100vh - 70px);     /* ✅ allow scrolling */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg,#1d2b64,#f8cdda);
+  font-family: 'Segoe UI', sans-serif;
+
+  padding: 20px;                      /* ✅ prevents edge cut */
+  box-sizing: border-box;
+
+  overflow-y: auto;                   /* ✅ scroll enabled */
+}
+
+/* GLASS EFFECT CARD */
+.register-box{
+  width: 100%;
+  max-width: 380px;                   /* ✅ responsive */
+  padding: 40px;
+  border-radius: 15px;
+  
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center;
+  color: white;
+}
+
+/* TITLE */
+.register-box h2{
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+/* INPUTS */
+.register-box input{
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;                /* ✅ adjusted for error msg */
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 15px;
+}
+
+/* INPUT PLACEHOLDER */
+.register-box input::placeholder{
+  color: #eee;
+}
+
+/* INPUT FOCUS */
+.register-box input:focus{
+  background: rgba(255,255,255,0.3);
+}
+
+/* BUTTON */
+.register-box button{
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  background: linear-gradient(45deg,#ff512f,#dd2476);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* BUTTON HOVER */
+.register-box button:hover{
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* LOGIN TEXT */
+.login-text{
+  margin-top:15px;
+  text-align:center;
+}
+
+/* LOGIN LINK */
+.login-link{
+  color:#00c6ff;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.login-link:hover{
+  text-decoration:underline;
+}
+
+/* ERROR MESSAGE */
+.error {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* ✅ MOBILE RESPONSIVE */
+@media (max-width: 480px){
+  .register-box{
+    padding: 20px;
+  }
+
+  .register-box h2{
+    font-size: 22px;
+  }
+}
