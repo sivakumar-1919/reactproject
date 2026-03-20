@@ -157,24 +157,22 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;   /* 🔥 stack items vertically */
-    align-items: stretch;     /* full width */
-    max-height: 200px;        /* 🔥 limit height */
-    overflow-y: auto;     
-    
-    scroll-behavior: smooth;
-    gap: 8px;
-    padding: 8px 10px;
+    display: flex;
+    flex-wrap: nowrap;        /* ✅ keep in one row */
+    overflow-x: auto;         /* ✅ enable left-right scroll */
+    overflow-y: hidden;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px;
+
+    scroll-behavior: smooth;  /* optional smooth scroll */
   }
 
   .nav-link {
-    width: 100%;              /* full width links */
-    justify-content: flex-start;
-    font-size: 14px;
-    padding: 10px 12px;
-    border-radius: 10px;
+    flex: 0 0 auto;           /* ✅ prevents shrinking */
   }
 }
+
 /* SMALL MOBILE */
 @media (max-width: 480px) {
   .navbar {
