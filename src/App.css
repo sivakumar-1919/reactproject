@@ -158,30 +158,22 @@
 
 /* MOBILE */
 @media (max-width: 768px) {
-
-  .navbar {
-    overflow: hidden;   /* hide scrollbar */
-  }
-
   .navbar {
     display: flex;
-    flex-wrap: nowrap;
-    width: max-content;
-    animation: autoScroll 12s linear infinite;
+    flex-wrap: nowrap;        /* ✅ keep in one row */
+    overflow-x: auto;         /* ✅ enable left-right scroll */
+    overflow-y: hidden;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px;
+
+    scroll-behavior: smooth;
+    
+     white-space: nowrap; 
   }
 
   .nav-link {
-    flex: 0 0 auto;
-  }
-}
-
-/* animation */
-@keyframes autoScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
+    flex: 0 0 auto;           /* ✅ prevents shrinking */
   }
 }
 
