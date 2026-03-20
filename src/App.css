@@ -175,8 +175,8 @@
   .nav-link {
     flex: 0 0 auto;           /* ✅ prevents shrinking */
   }
-  .logout-btn {
-    display: none;
+  .dropdown-menu .logout-btn {
+    display: none !important; /* use !important to override inline styles if any */
   }
 }
 
@@ -192,5 +192,27 @@
     padding: 6px 10px;
   }
 }
+/* MOBILE DROPDOWN FIX */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    top: 60px; /* adjust based on navbar height */
+    right: 10px;
+    width: 200px;
+  }
 
-/* extra added */
+  .dropdown-item {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .logout-btn {
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+  }
+  .dropdown-menu {
+    max-height: 50vh; /* 50% of viewport height */
+    overflow-y: auto;
+  }
+}
+
