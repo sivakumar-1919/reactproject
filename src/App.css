@@ -157,18 +157,24 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .navbar {
+    flex-direction: column;   /* 🔥 stack items vertically */
+    align-items: stretch;     /* full width */
+    max-height: 200px;        /* 🔥 limit height */
+    overflow-y: auto;     
+    
+    scroll-behavior: smooth;
     gap: 8px;
     padding: 8px 10px;
-    min-height: fit-content;
   }
 
   .nav-link {
+    width: 100%;              /* full width links */
+    justify-content: flex-start;
     font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 25px;
+    padding: 10px 12px;
+    border-radius: 10px;
   }
 }
-
 /* SMALL MOBILE */
 @media (max-width: 480px) {
   .navbar {
@@ -181,3 +187,5 @@
     padding: 6px 10px;
   }
 }
+
+/* extra added */
