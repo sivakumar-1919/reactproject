@@ -175,6 +175,9 @@
   .nav-link {
     flex: 0 0 auto;           /* ✅ prevents shrinking */
   }
+  .logout-btn {
+    display: none;
+  }
 }
 
 /* SMALL MOBILE */
