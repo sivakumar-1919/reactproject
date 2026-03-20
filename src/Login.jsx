@@ -31,8 +31,7 @@ function Login() {
       // Redirect to home
       navigate("/");
 
-      // ✅ Optional: refresh UI so navbar/cart updates immediately
-      window.location.reload();
+       window.location.reload(); 
 
     } else {
       alert("Invalid Email or Password");

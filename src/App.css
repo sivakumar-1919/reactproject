@@ -95,9 +95,10 @@
 /* EMAIL TEXT */
 .dropdown-menu p {
   font-size: 13px;
-  color: #fff;
+  color:black;
   margin-bottom: 12px;
   word-break: break-word;
+  
 }
 
 /* DROPDOWN ITEMS */

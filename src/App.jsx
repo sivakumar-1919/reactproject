@@ -22,6 +22,7 @@ import Login from './Login';
 import { clearCart } from './CartSlice';
 
 
+
 function App() {
 
   const dispatch = useDispatch();
@@ -63,23 +64,24 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
   <Link className="nav-link" to="/nonveg"><i className="fa-solid fa-drumstick-bite"></i>NonVeg</Link>
   <Link className="nav-link" to="/milk">Milk</Link>
   <Link className="nav-link" to="/chocolates">Chocolates</Link>
+   
+  
+
   <Link className='nav-link' to="/cart"><i className="fa-solid fa-cart-arrow-down"></i>Cart({totalQuantity})</Link>
   <Link className='nav-link' to="/aboutus">AboutUs</Link>
   <Link className='nav-link' to="/contactus">ContactUs</Link>
   <Link className='nav-link' to="/Orders">Orders</Link>
   <Link className='nav-link' to="/Register">Register</Link>
   
-  {user ? (
-  <div className="user-section"> {/* ✅ NEW */}
+{user ? (
+  <div className="user-section">
 
-    {/* USER NAME CLICK */}
     <span className="nav-link user-name" onClick={toggleDropdown}>
       👤 {user.name} ⬇️
     </span>
 
-    {/* DROPDOWN */}
     {showDropdown && (
-      <div className="dropdown-menu"> {/* ✅ NEW */}
+      <div className="dropdown-menu">
         
         <p className="dropdown-item">Email: {user.email}</p>
 
