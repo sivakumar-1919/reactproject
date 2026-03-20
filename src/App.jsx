@@ -76,7 +76,7 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
 {user ? (
   <div className="user-section">
 
-    <span className="nav-link user-name" onClick={toggleDropdown}>
+    <span className="nav-link user-name" onClick={toggleDropdown}onTouchStart={toggleDropdown}>
       👤 {user.name} ⬇️
     </span>
 
@@ -85,7 +85,7 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
         
         <p className="dropdown-item">Email: {user.email}</p>
 
-        <button className="dropdown-item logout-btn" onClick={handleLogout}>
+        <button className="dropdown-item logout-btn" onClick={handleLogout}> 
           Logout
         </button>
 
@@ -127,3 +127,5 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
 }
 
 export default App;    
+
+
