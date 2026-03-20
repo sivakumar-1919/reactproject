@@ -1,4 +1,3 @@
-
 /* ================= NAVBAR ================= */
 .navbar {
   position: fixed;
@@ -44,12 +43,12 @@
 .nav-link:active {
   transform: scale(0.95);
 }
+
 /* ================= USER SECTION ================= */
 .user-section {
   position: relative;
   display: flex;
   align-items: center;
-
   flex: 0 0 auto;   /* 🔥 VERY IMPORTANT */
 }
 
@@ -61,7 +60,6 @@
   padding: 6px 16px;
   border-radius: 25px;
   background: rgba(255, 255, 255, 0.15);
-  
   color: #fff;
   font-weight: 500;
   cursor: pointer;
@@ -82,16 +80,13 @@
   width: 220px;
   padding: 15px;
   border-radius: 15px;
-
-  /* GLASS EFFECT */
   background: rgba(255, 255, 255, 0.15);
-  
   border: 1px solid rgba(255,255,255,0.3);
-
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   z-index: 1000;
-
   animation: slideDown 0.3s ease;
+  max-height: 50vh; /* MOBILE FRIENDLY */
+  overflow-y: auto; /* SCROLL IF TOO TALL */
 }
 
 /* EMAIL TEXT */
@@ -100,7 +95,6 @@
   color:black;
   margin-bottom: 12px;
   word-break: break-word;
-  
 }
 
 /* DROPDOWN ITEMS */
@@ -124,6 +118,9 @@
 .logout-btn {
   background: rgba(255, 0, 0, 0.7);
   margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0;
 }
 
 .logout-btn:hover {
@@ -141,6 +138,7 @@
     transform: translateY(0);
   }
 }
+
 /* ================= RESPONSIVE ================= */
 
 /* TABLET */
@@ -160,23 +158,30 @@
 @media (max-width: 768px) {
   .navbar {
     display: flex;
-    flex-wrap: nowrap;        /* ✅ keep in one row */
-    overflow-x: auto;         /* ✅ enable left-right scroll */
+    flex-wrap: nowrap;        /* keep in one row */
+    overflow-x: auto;         /* enable horizontal scroll */
     overflow-y: hidden;
     justify-content: flex-start;
     gap: 10px;
     padding: 10px;
-
     scroll-behavior: smooth;
-    
-     white-space: nowrap; 
+    white-space: nowrap; 
   }
 
   .nav-link {
-    flex: 0 0 auto;           /* ✅ prevents shrinking */
+    flex: 0 0 auto;           /* prevents shrinking */
   }
-  .dropdown-menu .logout-btn {
-    display: none !important; /* use !important to override inline styles if any */
+
+  /* MOBILE DROPDOWN FIX */
+  .dropdown-menu {
+    top: 60px;        /* adjust according to navbar height */
+    right: 10px;
+    width: 200px;
+  }
+
+  .dropdown-item {
+    font-size: 14px;
+    padding: 8px 10px;
   }
 }
 
@@ -192,27 +197,3 @@
     padding: 6px 10px;
   }
 }
-/* MOBILE DROPDOWN FIX */
-@media (max-width: 768px) {
-  .dropdown-menu {
-    top: 60px; /* adjust based on navbar height */
-    right: 10px;
-    width: 200px;
-  }
-
-  .dropdown-item {
-    font-size: 14px;
-    padding: 8px 10px;
-  }
-
-  .logout-btn {
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
-  }
-  .dropdown-menu {
-    max-height: 50vh; /* 50% of viewport height */
-    overflow-y: auto;
-  }
-}
-
