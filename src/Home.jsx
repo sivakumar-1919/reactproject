@@ -207,7 +207,9 @@ function Home() {
   <div className="hero-content">
     <h1>Welcome to FoodZone</h1>
     <p>Delicious food delivered to your doorstep 🍽️</p>
-    <a href="/veg" className="hero-btn">Explore Menu</a>
+     <Link to="/veg" className="hero-btn">
+    Explore Menu
+  </Link>
   </div>
 
 </section>
