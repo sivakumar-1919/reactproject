@@ -35,6 +35,8 @@ function Cart() {
   );
 }
 
+
+
   // OLD STATE (manual discount buttons)
   const [discountPer, setDiscountPer] = useState(0);
  
@@ -48,6 +50,8 @@ function Cart() {
     const [paymentMethod, setPaymentMethod] = useState("");
 
     const [customerEmail, setCustomerEmail] = useState("");
+
+    const [orderSuccess, setOrderSuccess] = useState(false);
 
 
 
@@ -103,38 +107,52 @@ function Cart() {
       email: customerEmail,
     };   
 
-    const handleCheckOut = ()=>{
+    const handleCheckOut = () => {
 
-        // 1️⃣ Validate payment
+  // 1️⃣ Validate payment
   if (!paymentMethod) {
-    alert("Please select payment method");
+    alert("Please select payment method ❌");
     return;
   }
 
   // 2️⃣ Validate email
   if (!customerEmail) {
-    alert("Please enter your email");
+    alert("Please enter your email ❌");
+    return;
   }
-        emailjs.send( "service_rf4wpfa", "template_covioys", templateParams,"ZWA2bEde1dWfH789D")
-      .then(() => {alert("Order placed & Email sent successfully!");
-       })
-      .catch((error) => {
-        alert("Email sending failed");
-        console.error(error);
-      });
-       const orderData = {
-    items: cartItems,
-    total: finalAmount,
-    paymentMethod: paymentMethod,
-    date: new Date().toLocaleString(),
-  };
 
-  dispatch(addOrder(orderData));  // SAVE ORDER
-           
+  emailjs.send(
+    "service_rf4wpfa",
+    "template_covioys",
+    templateParams,
+    "ZWA2bEde1dWfH789D"
+  )
+    .then(() => {
 
-  alert("Order Placed Successfully!");
+      const orderData = {
+        items: cartItems,
+        total: finalAmount,
+        paymentMethod,
+        date: new Date().toLocaleString(),
+      };
 
-    }
+      dispatch(addOrder(orderData));
+      
+
+      // ✅ SHOW SUCCESS UI
+      setOrderSuccess(true);
+
+      // ✅ REDIRECT AFTER 3 SECONDS
+      setTimeout(() => {
+        navigate("/orders", { replace: true });
+      }, 3000);
+
+    })
+    .catch((error) => {
+      alert("Email sending failed ❌");
+      console.error(error);
+    });
+};
 
   // CART ITEMS
   const listItems = cartItems.map((item, index) => (
@@ -146,6 +164,16 @@ function Cart() {
 
   return (
   <div className="page-center">
+
+    {orderSuccess && (
+  <div className="success-overlay">
+    <div className="success-box">
+      <h2>🎉 Order Placed Successfully!</h2>
+      <p>Redirecting to Orders page...</p>
+    </div>
+  </div>
+)}
+
     <div className="cart-layout">
 
       {/* LEFT SIDE */}
