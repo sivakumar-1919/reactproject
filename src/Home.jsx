@@ -176,7 +176,7 @@ function Home() {
     {
       img: "/chocolatesimages/chocolatelavacake.jpg",
       name: "Chocolate Lava Cake",
-       link: "/chocolates="
+       link: "/chocolates"
     }
   ];
 
