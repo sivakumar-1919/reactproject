@@ -1,17 +1,22 @@
 
 import React from "react";
 import "./Milk.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import Pagenation from "./Pagenation";
 import "./Pagenation.css";
-
+import TopControls from "./TopControls";
 
 function Milk() {
      const dispatch = useDispatch();
+
+     const { search, minPrice, maxPrice } = useSelector(
+    (state) => state.filter
+  );
+
   const milkItems = [
   {
     name: "Rasmalai",
@@ -75,18 +80,36 @@ function Milk() {
   },
 ];
 
+
+
+const filteredItems = milkItems.filter((item) => {
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesPrice =
+      item.price >= minPrice &&
+      item.price <= maxPrice;
+
+    return matchesSearch && matchesPrice;
+  });
+
+
+
 const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
   const lastItem = currentPage * itemsPerPage;
   const firstItem = lastItem - itemsPerPage;
 
-  const currentItems = milkItems.slice(firstItem, lastItem);
+  const currentItems = filteredItems.slice(firstItem, lastItem);
 
-  const totalPages = Math.ceil(milkItems.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   return (
     <>
+
+    <TopControls />
       <div className="milk-container">
 
         {currentItems.map((item, index) => (

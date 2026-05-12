@@ -20,6 +20,8 @@ import Orders from './Orders';
 import Register from './Register';
 import Login from './Login';
 import { clearCart } from './CartSlice';
+import { clearOrders } from './OrderSlice';
+
 
 
 
@@ -44,6 +46,7 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
 
    const handleLogout = () => {
     dispatch(clearCart()); // clear cart
+     dispatch(clearOrders());   // 🔥 clear orders 
     localStorage.removeItem("currentUser");
     localStorage.removeItem("isLoggedIn");
     setUser(null);
@@ -59,19 +62,57 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
 
      
       <nav className="navbar">
-  <Link className="nav-link" to="/"><i className="fa-solid fa-house"></i>Home</Link> 
-  <Link className="nav-link" to="/veg"> <i className="fa-solid fa-apple-whole"></i>Veg</Link> 
-  <Link className="nav-link" to="/nonveg"><i className="fa-solid fa-drumstick-bite"></i>NonVeg</Link>
-  <Link className="nav-link" to="/milk">Milk</Link>
-  <Link className="nav-link" to="/chocolates">Chocolates</Link>
-   
-  
+  <Link className="nav-link" to="/">
+  <i className="fa-solid fa-house"></i>
+  <span>Home</span>
+</Link>
 
-  <Link className='nav-link' to="/cart"><i className="fa-solid fa-cart-arrow-down"></i>Cart({totalQuantity})</Link>
-  <Link className='nav-link' to="/aboutus">AboutUs</Link>
-  <Link className='nav-link' to="/contactus">ContactUs</Link>
-  <Link className='nav-link' to="/Orders">Orders</Link>
-  <Link className='nav-link' to="/Register">Register</Link>
+<Link className="nav-link" to="/veg">
+  <i className="fa-solid fa-carrot"></i>
+  <span>Veg</span>
+</Link>
+
+<Link className="nav-link" to="/nonveg">
+  <i className="fa-solid fa-drumstick-bite"></i>
+  <span>NonVeg</span>
+</Link>
+
+<Link className="nav-link" to="/milk">
+  <i className="fa-solid fa-glass-water"></i>
+  <span>Milk</span>
+</Link>
+
+<Link className="nav-link" to="/chocolates">
+  <i className="fa-solid fa-candy-cane"></i>
+  <span>Chocolates</span>
+</Link>
+
+<Link className="nav-link" to="/cart">
+  <i className="fa-solid fa-cart-shopping"></i>
+  <span>Cart({totalQuantity})</span>
+</Link>
+
+<Link className="nav-link" to="/aboutus">
+  <i className="fa-solid fa-circle-info"></i>
+  <span>AboutUs</span>
+</Link>
+
+<Link className="nav-link" to="/contactus">
+  <i className="fa-solid fa-address-book"></i>
+  <span>ContactUs</span>
+</Link>
+
+<Link className="nav-link" to="/orders">
+  <i className="fa-solid fa-box"></i>
+  <span>Orders</span>
+</Link>
+
+
+
+<Link className="nav-link" to="/register">
+  <i className="fa-solid fa-user-plus"></i>
+  <span>Register</span>
+</Link>
   
 {user ? (
   <div className="user-section">
@@ -94,7 +135,7 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
 
   </div>
 ) : (
-  <Link className='nav-link' to="/login">Login</Link>
+  <Link className='nav-link' to="/login">  <i className="fa-solid fa-right-to-bracket"></i> <span>Login</span></Link>
 )}
 
   <ToastContainer position="top-right" autoClose={2000}></ToastContainer>

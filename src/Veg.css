@@ -4,7 +4,7 @@
   gap: 20px;
   justify-content: center;
   padding: 20px;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 /* Card */
@@ -81,4 +81,12 @@ body {
 }
 .card:hover img {
   transform: scale(1.1);
+}
+.top-controls-row {
+  display: flex;
+  justify-content: center;   /* 🔥 THIS is the key change */
+  align-items: center;
+  gap: 30px;                /* space between search & filters */
+  margin-top: 20px;
+  flex-wrap: wrap;
 }

@@ -1,15 +1,31 @@
 import React, { useState } from "react";
 import "./Veg.css";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
-import { toast } from "react-toastify";
+
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Pagenation from "./Pagenation";
+
+import Pagination from "./Pagenation";
 import "./Pagenation.css";
 
-function Veg() {
+import TopControls from "./TopControls";
 
-  let dispatch = useDispatch();
+function Veg() {
+  const dispatch = useDispatch();
+
+  // =========================
+  // REDUX FILTER STATE
+  // =========================
+
+  const { search, minPrice, maxPrice } = useSelector(
+    (state) => state.filter
+  );
+
+  // =========================
+  // VEG ITEMS
+  // =========================
 
   const vegItems = [
     {
@@ -21,7 +37,7 @@ function Veg() {
     {
       name: "Veg Biryani",
       price: 180,
-      description: "basmati rice cooked with fresh vegetables and spices.",
+      description: "Basmati rice cooked with fresh vegetables and spices.",
       image: "/vegimages/vegbiryani.jpg",
     },
     {
@@ -46,85 +62,130 @@ function Veg() {
       name: "Chole Bhature",
       price: 160,
       description: "Spicy chickpea curry served with fluffy fried bhature.",
-      image: "/vegimages/cholebhature.jpg"
+      image: "/vegimages/cholebhature.jpg",
     },
     {
       name: "Veg Fried Rice",
       price: 150,
       description: "Stir-fried rice with vegetables and soy sauce.",
-      image: "/vegimages/vegfriedrice.jpg"
+      image: "/vegimages/vegfriedrice.jpg",
     },
     {
       name: "Aloo Gobi",
       price: 140,
       description: "Dry curry made with potatoes and cauliflower.",
-      image: "/vegimages/aloogobi.jpg"
+      image: "/vegimages/aloogobi.jpg",
     },
     {
       name: "Matar Paneer",
       price: 220,
       description: "Paneer and green peas cooked in rich tomato gravy.",
-      image: "/vegimages/Matarpaneer.jpg"
+      image: "/vegimages/Matarpaneer.jpg",
     },
     {
       name: "Veg Noodles",
       price: 130,
       description: "Stir-fried noodles with fresh vegetables.",
-      image: "/vegimages/vegnoodles.jpg"
-    }
+      image: "/vegimages/vegnoodles.jpg",
+    },
   ];
 
+  // =========================
+  // FILTER LOGIC
+  // =========================
+
+  const filteredItems = vegItems.filter((item) => {
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesPrice =
+      item.price >= minPrice &&
+      item.price <= maxPrice;
+
+    return matchesSearch && matchesPrice;
+  });
+
+  // =========================
+  // PAGINATION
+  // =========================
+
   const [currentPage, setCurrentPage] = useState(1);
+
   const itemsPerPage = 4;
 
   const lastItem = currentPage * itemsPerPage;
+
   const firstItem = lastItem - itemsPerPage;
 
-  const currentItems = vegItems.slice(firstItem, lastItem);
+  const currentItems = filteredItems.slice(
+    firstItem,
+    lastItem
+  );
 
-  const totalPages = Math.ceil(vegItems.length / itemsPerPage);
+  const totalPages = Math.ceil(
+    filteredItems.length / itemsPerPage
+  );
+
+  // =========================
+  // UI
+  // =========================
 
   return (
     <>
+      <ToastContainer />
+
+       <TopControls />
+
 
       <div className="veg-container">
+        {currentItems.length > 0 ? (
+          currentItems.map((item) => (
+            <div className="card" key={item.name}>
+              <img src={item.image} alt={item.name} />
 
-        {currentItems.map((item, index) => (
-          <div className="card" key={index}>
+              <div className="card-body">
+                <h2>{item.name}</h2>
 
-            <img src={item.image} alt={item.name} />
+                <h3>₹{item.price}</h3>
 
-            <div className="card-body">
-              <h2>{item.name}</h2>
-              <h3>₹{item.price}</h3>
-              <p>{item.description}</p>
+                <p>{item.description}</p>
 
-              <button
-                onClick={() => {
-                  dispatch(addToCart(item));
-                  toast.success(`product ${item.name} added to cart successfully!`);
-                }}
-                className="cart-btn"
-              >
-                Add to Cart
-              </button>
+                <button
+                  className="cart-btn"
+                  onClick={() => {
+                    dispatch(addToCart(item));
 
+                    toast.success(
+                      `${item.name} added to cart successfully!`
+                    );
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
-
-          </div>
-        ))}
-
+          ))
+        ) : (
+          <h2 className="no-items">
+            No items found
+          </h2>
+        )}
       </div>
 
-      <Pagenation
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
+      {/* =========================
+          PAGINATION
+      ========================= */}
 
+      
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      
     </>
   );
 }
 
 export default Veg;
-

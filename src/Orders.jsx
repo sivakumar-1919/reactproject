@@ -1,9 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./Orders.css";
+import { Navigate } from "react-router-dom";
 
 function Orders() {
   const orders = useSelector((state) => state.orders);
+
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="orders-page">
