@@ -3,7 +3,7 @@ import React from "react";
 import "./Milk.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import Pagenation from "./Pagenation";
@@ -108,6 +108,8 @@ const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <>
+
+    <ToastContainer />
 
     <TopControls />
       <div className="milk-container">

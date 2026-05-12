@@ -2,7 +2,7 @@ import React, {  useState } from 'react'
 import "./NonVeg.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from './CartSlice';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Pagenation from "./Pagenation";
 import "./Pagenation.css";
@@ -109,6 +109,8 @@ const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <>
+
+    <ToastContainer />
    
      <TopControls />
     <div className="nonveg-container">
