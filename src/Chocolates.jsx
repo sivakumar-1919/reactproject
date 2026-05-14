@@ -108,7 +108,7 @@ function Chocolates() {
   return (
     <>
 
-    <ToastContainer />
+    
      <TopControls />
       <div className="milk-container">
 
