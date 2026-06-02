@@ -75,10 +75,6 @@ function Chocolates() {
   return (
     <>
 
-
-    
-=======
-
      <TopControls />
       <div className="milk-container">
 

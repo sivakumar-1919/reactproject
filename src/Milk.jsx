@@ -77,11 +77,6 @@ const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
 
-
-   
-
-    
-
     <TopControls />
       <div className="milk-container">
 

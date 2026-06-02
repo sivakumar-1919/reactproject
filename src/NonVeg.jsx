@@ -72,11 +72,6 @@ const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
 
-
-=======
-   
-
-   
      <TopControls />
     <div className="nonveg-container">
       {currentItems.map((item, index) => (

@@ -76,13 +76,6 @@ function Veg() {
   return (
     <>
 
-
-
-       
-=======
-      
-
-
       <TopControls />
 
       <div className="veg-container">
