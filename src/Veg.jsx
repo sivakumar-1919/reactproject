@@ -123,8 +123,5 @@ function Veg() {
     </>
   );
 }
-
-
-export default Veg;
 export default React.memo(Veg);
 
