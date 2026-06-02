@@ -75,13 +75,13 @@ function Veg() {
 
   return (
     <>
-<<<<<<< HEAD
 
 
-       <TopControls />
+
+       
 =======
       
->>>>>>> 86580ad (first commit)
+
 
       <TopControls />
 
@@ -124,8 +124,7 @@ function Veg() {
   );
 }
 
-<<<<<<< HEAD
+
 export default Veg;
-=======
 export default React.memo(Veg);
->>>>>>> 86580ad (first commit)
+

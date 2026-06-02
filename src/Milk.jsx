@@ -77,11 +77,10 @@ const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
 
-<<<<<<< HEAD
+
    
-=======
+
     
->>>>>>> 86580ad (first commit)
 
     <TopControls />
       <div className="milk-container">

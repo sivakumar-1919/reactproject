@@ -75,10 +75,10 @@ function Chocolates() {
   return (
     <>
 
-<<<<<<< HEAD
+
     
 =======
->>>>>>> 86580ad (first commit)
+
      <TopControls />
       <div className="milk-container">
 
