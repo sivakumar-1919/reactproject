@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Home from './Home'
 import Veg from './Veg'
 import NonVeg from './NonVeg'
 import "@fortawesome/fontawesome-free/css/all.min.css";
-
+ import OAuthSuccess from "./OAuthSuccess";
 
 import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +21,7 @@ import Register from './Register';
 import Login from './Login';
 import { clearCart } from './CartSlice';
 import { clearOrders } from './OrderSlice';
+import ErrorBoundary from './ErrorBoundary';
 
 
 
@@ -34,15 +35,26 @@ function App() {
 );
 
 const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
+
+useEffect(() => {
+  const syncUser = () => {
+    setUser(JSON.parse(localStorage.getItem("currentUser")));
+  };
+
+  window.addEventListener("storage", syncUser);
+
+  return () => {
+    window.removeEventListener("storage", syncUser);
+  };
+}, []);
    
    // ✅ Get cart items from Redux store
   const cartItems = useSelector(state => state.cart);
 
   // ✅ Calculate total quantity
-  const totalQuantity = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const totalQuantity = useMemo(() => {
+  return cartItems.reduce((total, item) => total + item.quantity, 0);
+}, [cartItems]);
 
    const handleLogout = () => {
     dispatch(clearCart()); // clear cart
@@ -50,6 +62,8 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
     localStorage.removeItem("currentUser");
     localStorage.removeItem("isLoggedIn");
     setUser(null);
+
+    window.dispatchEvent(new Event("storage")); // 🔥 important
   };
 
   const toggleDropdown = () => {
@@ -146,8 +160,9 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
      
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/veg" element={<Veg />} />
-        <Route path="/nonveg" element={<NonVeg />} />
+        <Route path="/veg" element={<ErrorBoundary><Veg /> </ErrorBoundary> } />
+
+       <Route path="/nonveg" element={<ErrorBoundary><NonVeg /></ErrorBoundary> } />
         <Route path="/milk" element={<Milk />} />
         <Route path="/chocolates" element={<Chocolates />} />
         <Route path="/cart" element={<Cart />} />
@@ -156,6 +171,11 @@ const [showDropdown, setShowDropdown] = useState(false); // ✅ NEW
          <Route path="/Orders" element={<Orders />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+         
+
+
+  <Route path="/oauth-success" element={<OAuthSuccess />} />
+
           
 
         

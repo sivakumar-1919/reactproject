@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./Milk.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
@@ -9,77 +9,35 @@ import { useState } from "react";
 import Pagenation from "./Pagenation";
 import "./Pagenation.css";
 import TopControls from "./TopControls";
+import axios from "axios";
+import api from "./api";
 
 function Milk() {
      const dispatch = useDispatch();
+
+      const [milkItems, setMilkItems] = useState([]);
+       const [loading, setLoading] = useState(true); // ✅ ADD THIS
 
      const { search, minPrice, maxPrice } = useSelector(
     (state) => state.filter
   );
 
-  const milkItems = [
-  {
-    name: "Rasmalai",
-    price: 180,
-    description: "Soft paneer balls soaked in creamy saffron flavored milk.",
-    image: "/milkimages/rasmalai.jpg",
-  },
-  {
-    name: "Rabri",
-    price: 160,
-    description: "Thick sweet condensed milk dessert topped with dry fruits.",
-    image: "/milkimages/rabri.jpg",
-  },
-  {
-    name: "Kaju Milkshake",
-    price: 140,
-    description: "Rich and creamy milkshake made with cashews and milk.",
-    image: "/milkimages/kajumilkshake.jpg",
-  },
-  {
-    name: "Badam Milk",
-    price: 130,
-    description: "Traditional almond flavored milk served hot or cold.",
-    image: "/milkimages/badammilk.jpg",
-  },
-  {
-    name: "Kulfi",
-    price: 120,
-    description: "Indian traditional frozen milk dessert with nuts.",
-    image: "/milkimages/kulfi.jpg",
-  },
-  {
-    name: "Basundi",
-    price: 170,
-    description: "Sweet thickened milk dessert flavored with cardamom and nuts.",
-    image: "/milkimages/basundi.jpeg",
-  },
-  {
-    name: "Pista Milkshake",
-    price: 150,
-    description: "Refreshing milkshake made with pistachios and creamy milk.",
-    image: "/milkimages/pistabadammilk.jpg",
-  },
-  {
-    name: "Chocolate Milkshake",
-    price: 140,
-    description: "Cold chocolate flavored milkshake topped with cream.",
-    image: "/milkimages/chocolatemilkshake.jpg",
-  },
-  {
-    name: "Strawberry Milkshake",
-    price: 140,
-    description: "Sweet and refreshing flavoured strawberry milk drink.",
-    image: "/milkimages/strawberrymilkshake.jpg",
-  },
-  {
-    name: "Falooda",
-    price: 160,
-    description: "Popular milk dessert with vermicelli, ice cream and nuts.",
-    image: "/milkimages/falooda.jpg",
-  },
-];
-
+  
+  // FETCH FROM BACKEND
+  useEffect(() => {
+    setLoading(true); 
+    api
+      .get("https://food-service-s5lq.onrender.com/products/MILK")
+      .then((response) => {
+        console.log(response.data);
+        setMilkItems(response.data);
+         setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+         setLoading(false);
+      });
+  }, []);
 
 
 const filteredItems = milkItems.filter((item) => {
@@ -106,10 +64,24 @@ const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
+
+  //  Loading data 
+  if (loading) {
+  return (
+    <div className="loading-container">
+      <h2>🥛Loading Milk Items...</h2>
+    </div>
+  );
+}
+
   return (
     <>
 
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> 86580ad (first commit)
 
     <TopControls />
       <div className="milk-container">

@@ -2,42 +2,70 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import axios from "axios";
 
 function Login() {
 
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
 
-    // Get registered users
-    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Check user
-    const validUser = users.find(
-      (user) =>
-        user.email === data.email &&
-        user.password === data.password
+  const onSubmit = async (data) => {
+
+  try {
+
+    const response = await axios.post(
+      "https://jwt-service-xhpg.onrender.com/api/auth/login",
+      {
+        email: data.email,
+        password: data.password
+      }
     );
 
-    if (validUser) {
-      alert("Login Successful");
+      console.log(response.data); 
 
-      // ✅ IMPORTANT: store logged-in user
-      localStorage.setItem("currentUser", JSON.stringify(validUser));
+    localStorage.setItem(
+  "jwtToken",
+  response.data.token
+);
 
-      localStorage.setItem("isLoggedIn", "true");
+localStorage.setItem(
+  "currentUser",
+  JSON.stringify({
+    name: response.data.name,
+    email: response.data.email
+  })
+);
 
-      // Redirect to home
-      navigate("/");
+localStorage.setItem("isLoggedIn", "true");
 
-       window.location.reload(); 
+// 🔥 trigger update manually
+window.dispatchEvent(new Event("storage"));
 
-    } else {
-      alert("Invalid Email or Password");
-    }
+alert("Login Successful");
 
-    reset();
+navigate("/");
+
+  } catch (error) {
+
+    alert("Invalid Email or Password");
+
+  }
+
+  reset();
+};
+
+ // ✅ Google Login
+  const googleLogin = () => {
+    window.location.href =
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/google";
+  };
+
+  //  ✅ GitHub LogIn
+  const githubLogin = () => {
+    window.location.href =
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/github";
   };
 
   return (
@@ -71,7 +99,40 @@ function Login() {
           </span>
         </p>
 
+         {/* 👇 GOOGLE LOGIN BELOW */}
+      <div className="oauth-section">
+
+        <p style={{ margin: "10px 0" }}>OR</p>
+
+      <button
+  type="button"
+  onClick={() =>
+    window.location.href =
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/google"
+  }
+  className="google-btn"
+>
+  <i className="fab fa-google"></i>
+  Continue with Google
+</button>
+
+<button
+  type="button"
+  onClick={() =>
+    window.location.href =
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/github"
+  }
+  className="github-btn"
+>
+  <i className="fab fa-github"></i>
+  Continue with GitHub
+</button>
+ </div>
+
       </form>
+
+       
+
     </div>
   );
 }

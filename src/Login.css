@@ -24,10 +24,10 @@
   padding: 10px;
   margin: 10px 0;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #242222;
 }
 
-.login-form button{
+.login-form button[type="submit"]{
   width: 100%;
   padding: 10px;
   background: #4facfe;
@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 
-.login-form button:hover{
+.login-form button[type="submit"]:hover{
   background: #2f80ed;
 }
 .login-form{
@@ -59,4 +59,65 @@
 
 .register-link:hover{
   text-decoration:underline;
+}
+/* Google Button */
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  background: white;
+  color: #444;
+
+  border: 1px solid #242222;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.google-btn:hover {
+  background: #f8f9fa;
+}
+
+.google-btn i {
+  color: #db4437; /* Google red */
+  font-size: 20px;
+}
+
+/* GitHub Button */
+.github-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  background: white;
+  color: #24292e;
+
+  border: 1px solid #242222;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.github-btn:hover {
+  background: #f8f9fa;
+}
+
+.github-btn i {
+  color: #24292e; /* GitHub black */
+  font-size: 22px;
 }

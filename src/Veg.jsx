@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./Veg.css";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -7,158 +7,101 @@ import { addToCart } from "./CartSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Pagination from "./Pagenation";
+import Pagenation from "./Pagenation";
 import "./Pagenation.css";
 
 import TopControls from "./TopControls";
+import axios from "axios";
+import api from "./api";
 
 function Veg() {
+
   const dispatch = useDispatch();
 
-  // =========================
-  // REDUX FILTER STATE
-  // =========================
+  // ✅ ADD THIS (MISSING PART FIX)
+  const [vegItems, setVegItems] = useState([]);
+  const [loading, setLoading] = useState(true); // ✅ ADD THIS
 
   const { search, minPrice, maxPrice } = useSelector(
     (state) => state.filter
   );
 
-  // =========================
-  // VEG ITEMS
-  // =========================
+  // FETCH FROM BACKEND
+  useEffect(() => {
+  setLoading(true); 
 
-  const vegItems = [
-    {
-      name: "Paneer Butter Masala",
-      price: 240,
-      description: "Soft paneer cubes cooked in rich creamy tomato gravy.",
-      image: "/vegimages/paneer-butter-masala.jpg",
-    },
-    {
-      name: "Veg Biryani",
-      price: 180,
-      description: "Basmati rice cooked with fresh vegetables and spices.",
-      image: "/vegimages/vegbiryani.jpg",
-    },
-    {
-      name: "Masala Dosa",
-      price: 120,
-      description: "Crispy dosa filled with spiced potato masala.",
-      image: "/vegimages/masaladosa.jpg",
-    },
-    {
-      name: "Veg Manchurian",
-      price: 200,
-      description: "Deep-fried veggie balls tossed in spicy Indo-Chinese sauce.",
-      image: "/vegimages/vegmanchurian.jpg",
-    },
-    {
-      name: "Palak Paneer",
-      price: 230,
-      description: "Paneer cubes cooked in smooth spinach gravy.",
-      image: "/vegimages/palakpaneer.jpg",
-    },
-    {
-      name: "Chole Bhature",
-      price: 160,
-      description: "Spicy chickpea curry served with fluffy fried bhature.",
-      image: "/vegimages/cholebhature.jpg",
-    },
-    {
-      name: "Veg Fried Rice",
-      price: 150,
-      description: "Stir-fried rice with vegetables and soy sauce.",
-      image: "/vegimages/vegfriedrice.jpg",
-    },
-    {
-      name: "Aloo Gobi",
-      price: 140,
-      description: "Dry curry made with potatoes and cauliflower.",
-      image: "/vegimages/aloogobi.jpg",
-    },
-    {
-      name: "Matar Paneer",
-      price: 220,
-      description: "Paneer and green peas cooked in rich tomato gravy.",
-      image: "/vegimages/Matarpaneer.jpg",
-    },
-    {
-      name: "Veg Noodles",
-      price: 130,
-      description: "Stir-fried noodles with fresh vegetables.",
-      image: "/vegimages/vegnoodles.jpg",
-    },
-  ];
+  api
+    .get("https://food-service-s5lq.onrender.com/products/VEG")
+    .then((response) => {
+      console.log(response.data);
+      setVegItems(response.data);
+      setLoading(false); // ✅ STOP LOADING HERE
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false); // ✅ STOP LOADING EVEN IF ERROR
+    });
+}, []);
 
-  // =========================
   // FILTER LOGIC
-  // =========================
-
-  const filteredItems = vegItems.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-    const matchesPrice =
-      item.price >= minPrice &&
-      item.price <= maxPrice;
-
-    return matchesSearch && matchesPrice;
+  const filteredItems = useMemo(() => {
+  return vegItems.filter(item => {
+    return item.name.toLowerCase().includes(search.toLowerCase()) &&
+           item.price >= minPrice &&
+           item.price <= maxPrice;
   });
+}, [vegItems, search, minPrice, maxPrice]);
 
-  // =========================
   // PAGINATION
-  // =========================
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 4;
 
   const lastItem = currentPage * itemsPerPage;
-
   const firstItem = lastItem - itemsPerPage;
 
-  const currentItems = filteredItems.slice(
-    firstItem,
-    lastItem
-  );
+  const currentItems = filteredItems.slice(firstItem, lastItem);
 
-  const totalPages = Math.ceil(
-    filteredItems.length / itemsPerPage
-  );
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
-  // =========================
-  // UI
-  // =========================
+//  Loading data 
+  if (loading) {
+  return (
+    <div className="loading-container">
+      <h2>🍽 Loading Veg Items...</h2>
+    </div>
+  );
+}
 
   return (
     <>
+<<<<<<< HEAD
 
 
        <TopControls />
+=======
+      
+>>>>>>> 86580ad (first commit)
 
+      <TopControls />
 
       <div className="veg-container">
+
         {currentItems.length > 0 ? (
           currentItems.map((item) => (
-            <div className="card" key={item.name}>
+            <div className="card" key={item.id || item.name}>
               <img src={item.image} alt={item.name} />
 
               <div className="card-body">
                 <h2>{item.name}</h2>
-
                 <h3>₹{item.price}</h3>
-
                 <p>{item.description}</p>
 
                 <button
                   className="cart-btn"
                   onClick={() => {
                     dispatch(addToCart(item));
-
-                    toast.success(
-                      `${item.name} added to cart successfully!`
-                    );
+                    toast.success(`${item.name} added to cart successfully!`);
                   }}
                 >
                   Add to Cart
@@ -167,25 +110,22 @@ function Veg() {
             </div>
           ))
         ) : (
-          <h2 className="no-items">
-            No items found
-          </h2>
+          <h2 className="no-items">No items found</h2>
         )}
+
       </div>
 
-      {/* =========================
-          PAGINATION
-      ========================= */}
-
-      
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalPages={totalPages}
-        />
-      
+      <Pagenation
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </>
   );
 }
 
+<<<<<<< HEAD
 export default Veg;
+=======
+export default React.memo(Veg);
+>>>>>>> 86580ad (first commit)

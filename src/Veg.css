@@ -90,3 +90,15 @@ body {
   margin-top: 20px;
   flex-wrap: wrap;
 }
+
+.loading-container {
+  height: 100vh;
+  height: 100dvh; /* ✅ better for mobile browsers */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}

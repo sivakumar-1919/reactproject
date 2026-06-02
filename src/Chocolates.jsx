@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Milk.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
@@ -8,78 +8,35 @@ import { useState } from "react";
 import Pagenation from "./Pagenation";
 import "./Pagenation.css";
 import TopControls from "./TopControls";
+import axios from "axios";
+import api from "./api";
 
 function Chocolates() {
 
   const dispatch = useDispatch();
 
+  const [chocolateItems, setChocolateItems] = useState([]);
+   const [loading, setLoading] = useState(true); // ✅ ADD THIS
+
   const { search, minPrice, maxPrice } = useSelector(
     (state) => state.filter
   );
 
-  const chocolateItems = [
-    {
-      name: "Dark Chocolate Bar",
-      price: 120,
-      description: "Rich and intense dark chocolate made with high cocoa content.",
-      image: "/chocolatesimages/darkchocolatebar.jpg",
-    },
-    {
-      name: "Milk Chocolate Bar",
-      price: 110,
-      description: "Smooth and creamy milk chocolate loved by all age groups.",
-      image: "/chocolatesimages/milkchocolatebar.jpg",
-    },
-    {
-      name: "Chocolate Truffle",
-      price: 150,
-      description: "Soft chocolate balls coated with cocoa powder and cream filling.",
-      image: "/chocolatesimages/chocolatetruffle.jpg",
-    },
-    {
-      name: "Chocolate Brownie",
-      price: 160,
-      description: "Soft and fudgy chocolate brownie with rich cocoa flavor.",
-      image: "/chocolatesimages/chocolatebrownie.jpg",
-    },
-    {
-      name: "Chocolate Lava Cake",
-      price: 180,
-      description: "Warm chocolate cake with a delicious molten chocolate center.",
-      image: "/chocolatesimages/chocolatelavacake.jpg",
-    },
-    {
-      name: "Chocolate Ice Cream",
-      price: 140,
-      description: "Creamy chocolate flavored ice cream topped with chocolate syrup.",
-      image: "/chocolatesimages/chocolateicecream.jpg",
-    },
-    {
-      name: "Cadbury Dairy Milk Shake",
-      price: 180,
-      description: "creamy milk chocolate bar with rich cocoa flavor that melts in your mouth.",
-      image: "/chocolatesimages/cadburydairymilkshake.jpg"
-    },
-    {
-      name: "Chocolate Donut",
-      price: 130,
-      description: "Soft donut coated with rich chocolate glaze and sprinkles.",
-      image: "/chocolatesimages/chocolatedonut.jpg",
-    },
-    {
-      name: "Chocolate Cupcake",
-      price: 140,
-      description: "Fluffy chocolate cupcake topped with creamy chocolate frosting.",
-      image: "/chocolatesimages/chocolatecupcake.jpg",
-    },
-    {
-      name: "Chocolate Mousse",
-      price: 170,
-      description: "Light and airy chocolate dessert with smooth creamy texture.",
-      image: "/chocolatesimages/chocolatemousse.jpg",
-    },
-  ];
-
+  // FETCH FROM BACKEND
+  useEffect(() => {
+    setLoading(true); 
+    api
+      .get("https://food-service-s5lq.onrender.com/products/CHOCOLATES")
+      .then((response) => {
+        console.log(response.data);
+        setChocolateItems(response.data);
+         setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+         setLoading(false);
+      });
+  }, []);
 
   const filteredItems = chocolateItems.filter((item) => {
     const matchesSearch = item.name
@@ -105,10 +62,23 @@ function Chocolates() {
 
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
+
+  //  Loading data 
+  if (loading) {
+  return (
+    <div className="loading-container">
+      <h2>🍫Loading Chocolate Items...</h2>
+    </div>
+  );
+}
+
   return (
     <>
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 86580ad (first commit)
      <TopControls />
       <div className="milk-container">
 

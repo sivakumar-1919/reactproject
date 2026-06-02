@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
+import axios from "axios";
 
 function Register() {
 
@@ -15,17 +16,31 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+  const onSubmit = async (data) => {
 
-    users.push(data);
-    localStorage.setItem("users", JSON.stringify(users));
+  try {
 
-    alert("Registration Successful!");
+    const response = await axios.post(
+      "https://jwt-service-xhpg.onrender.com/api/auth/register",
+      {
+        name: data.name,
+        email: data.email,
+        mobileNumber: data.phone,
+        password: data.password
+      }
+    );
+
+    alert(response.data);
 
     reset();
+
     navigate("/login");
-  };
+
+  } catch (error) {
+
+    alert(error.response?.data || "Registration Failed");
+  }
+};
 
   const password = watch("password");
 

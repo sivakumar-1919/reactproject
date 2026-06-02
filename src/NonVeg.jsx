@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useMemo, useState } from 'react'
 import "./NonVeg.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from './CartSlice';
@@ -7,93 +7,46 @@ import "react-toastify/dist/ReactToastify.css";
 import Pagenation from "./Pagenation";
 import "./Pagenation.css";
 import TopControls from "./TopControls";
+import axios from 'axios';
+import api from './api';
 
 function NonVeg() {
   let dispatch=useDispatch();
+
+  
+    // ✅ ADD THIS (MISSING PART FIX)
+    const [nonvegItems, setNonvegItems] = useState([]);
+    const [loading, setLoading] = useState(true); // ✅ ADD THIS
 
 
   const { search, minPrice, maxPrice } = useSelector(
     (state) => state.filter
   );
    
+  // FETCH FROM BACKEND
+  useEffect(() => {
+    setLoading(true); 
+    api
+      .get("https://food-service-s5lq.onrender.com/products/NONVEG")
+      .then((response) => {
+        console.log(response.data);
+        setNonvegItems(response.data);
+         setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+         setLoading(false);
+      });
+  }, []);
+
   
-
-  const nonVegItems = [
-  {
-    name: "Chicken Biryani",
-    price: 280,
-    description: "Aromatic basmati rice cooked with spicy chicken pieces.",
-    image: "/nonvegimages/chickenbiryani.jpg",
-  },
-  {
-    name: "Butter Chicken",
-    price: 320,
-    description: "Tender chicken cooked in rich creamy tomato gravy.",
-    image: "/nonvegimages/butterchicken.jpg",
-  },
-  {
-    name: "Chicken Tandoori",
-    price: 350,
-    description: "Juicy chicken marinated with spices and roasted in tandoor.",
-    image: "/nonvegimages/chickentandoori.jpg",
-  },
-  {
-    name: "Chicken Fried Rice",
-    price: 220,
-    description: "Stir-fried rice tossed with chicken and vegetables.",
-    image: "/nonvegimages/chickenfriedrice.jpg",
-  },
-  {
-    name: "Mutton Curry",
-    price: 420,
-    description: "Slow cooked mutton in traditional spicy masala gravy.",
-    image: "/nonvegimages/muttoncurry.jpg",
-    
-  },
-  {
-    name: "Chicken Lollipop",
-    price: 260,
-    description: "Crispy deep-fried chicken wings with spicy coating.",
-    image: "/nonvegimages/chickenlollipop.jpg",
-  },
-  {
-    name: "Fish Fry",
-    price: 300,
-    description: "Fresh fish marinated with spices and shallow fried.",
-    image: "/nonvegimages/fishfry.jpg",
-  },
-  {
-    name: "Mutton Biryani",
-    price: 210,
-    description: "Mutton Biryani is a fragrant and spicy rice dish",
-    image: "/nonvegimages/muttonbiryani.jpg",
-  },
-  {
-    name: "Prawn Masala",
-    price: 380,
-    description: "Juicy prawns cooked in spicy onion tomato masala.",
-    image: "/nonvegimages/prawnsmasala.jpg",
-  },
-  {
-    name: "Egg Curry",
-    price: 180,
-    description: "Boiled eggs cooked in flavorful spicy gravy.",
-    image: "/nonvegimages/eggcurry.jpg",
-  },
-];
-
-
-const filteredItems = nonVegItems.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-    const matchesPrice =
-      item.price >= minPrice &&
-      item.price <= maxPrice;
-
-    return matchesSearch && matchesPrice;
+const filteredItems = useMemo(() => {
+  return nonvegItems.filter(item => {
+    return item.name.toLowerCase().includes(search.toLowerCase()) &&
+           item.price >= minPrice &&
+           item.price <= maxPrice;
   });
+}, [nonvegItems, search, minPrice, maxPrice]);
 
  
 
@@ -107,10 +60,23 @@ const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
+  //  Loading data 
+  if (loading) {
+  return (
+    <div className="loading-container">
+      <h2>🍗Loading NonVeg Items...</h2>
+    </div>
+  );
+}
+
   return (
     <>
 
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 86580ad (first commit)
    
      <TopControls />
     <div className="nonveg-container">
@@ -142,4 +108,4 @@ const [currentPage, setCurrentPage] = useState(1);
   )
 }
 
-export default NonVeg;
+export default React.memo(NonVeg);
