@@ -1,15 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Load saved orders from localStorage
+const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
 const OrdersSlice = createSlice({
   name: "orders",
-  initialState: [],
+  initialState: savedOrders,
 
   reducers: {
     addOrder: (state, action) => {
       state.push(action.payload);
+
+      // Save to localStorage
+      localStorage.setItem("orders", JSON.stringify(state));
     },
 
     clearOrders: () => {
+      localStorage.removeItem("orders");
       return [];
     },
   },

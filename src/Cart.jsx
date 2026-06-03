@@ -185,8 +185,17 @@ function Cart() {
           <>
             {cartItems.map((item, index) => (
               <div key={index} className="cart-item">
-                <h3>{item.name}</h3>
-                <p className="item-total"> Total: ₹{(item.price * item.quantity).toFixed(2)}</p>
+
+  <div className="cart-img-box">
+    <img src={item.image} alt={item.name} />
+  </div>
+
+  <div className="cart-details">
+    <h3>{item.name}</h3>
+    <p className="item-total">
+      Total: ₹{(item.price * item.quantity).toFixed(2)}
+    </p>
+  </div>
 
                 <button className="qty-btn" onClick={() => dispatch(decrementQty(item.name))}>−</button>
 
@@ -213,9 +222,10 @@ function Cart() {
       {cartItems.length > 0 && (
         <div className="bill-container">
 
-          <h2>Bill Summary</h2>
+          <h1>Bill Summary</h1>
 
           {/* COUPON */}
+          <h2>Coupon Discount : </h2>
           <input
             type="text"
             placeholder="Enter coupon"
@@ -228,6 +238,7 @@ function Cart() {
 
           {/* DISCOUNT */}
           <div className="discount-buttons">
+            <h2>Manual Discount : </h2>
             <button className="discount-btn" onClick={() => setDiscountPer(10)}>10%</button>
             <button className="discount-btn" onClick={() => setDiscountPer(20)}>20%</button>
             <button className="discount-btn" onClick={() => setDiscountPer(30)}>30%</button>
@@ -259,6 +270,7 @@ function Cart() {
 
           {/* PAYMENT */}
           <div className="payment-section">
+            <h2>Payment : </h2>
             <button className="payment-btn" onClick={() => setPaymentMethod("upi")}>UPI</button>
             <button className="payment-btn" onClick={() => setPaymentMethod("card")}>Card</button>
             <button className="payment-btn" onClick={() => setPaymentMethod("cod")}>COD</button>
