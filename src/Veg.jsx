@@ -31,7 +31,7 @@ function Veg() {
   setLoading(true); 
 
   api
-    .get("https://food-service-s5lq.onrender.com/products/VEG")
+    .get("http://54.227.32.25:8082/products/VEG")
     .then((response) => {
       console.log(response.data);
       setVegItems(response.data);
@@ -93,7 +93,13 @@ function Veg() {
                 <button
                   className="cart-btn"
                   onClick={() => {
-                    dispatch(addToCart(item));
+                    dispatch(addToCart({
+  id: item.id,
+  name: item.name,
+  price: item.price,
+  image: item.image,
+  description: item.description
+}));
                     toast.success(`${item.name} added to cart successfully!`);
                   }}
                 >
