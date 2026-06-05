@@ -27,7 +27,7 @@ function Milk() {
   useEffect(() => {
     setLoading(true); 
     api
-      .get("http://54.227.32.25:8082/products/MILK")
+      .get("https://food-service-s5lq.onrender.com/products/MILK")
       .then((response) => {
         console.log(response.data);
         setMilkItems(response.data);

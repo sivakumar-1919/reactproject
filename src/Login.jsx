@@ -16,7 +16,7 @@ function Login() {
   try {
 
     const response = await axios.post(
-      "https://jwttoken.mooo.com/api/auth/login",
+      "https://jwt-service-xhpg.onrender.com/api/auth/login",
       {
         email: data.email,
         password: data.password

@@ -90,7 +90,13 @@ function Chocolates() {
 
               <button
                 onClick={() => {
-                  dispatch(addToCart(item));
+                  dispatch(addToCart({
+                   id: item.id,
+                   name: item.name,
+                   price: item.price,
+                   image: item.image,
+                   description: item.description
+                 }));
                   toast.success(`Product ${item.name} added to cart successfully!`);
                 }}
                 className="cart-btn"

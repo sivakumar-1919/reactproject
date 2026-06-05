@@ -27,7 +27,7 @@ function NonVeg() {
   useEffect(() => {
     setLoading(true); 
     api
-      .get("http://jwttoken.mooo.com/products/NONVEG")
+      .get("https://food-service-s5lq.onrender.com/products/NONVEG")
       .then((response) => {
         console.log(response.data);
         setNonvegItems(response.data);
