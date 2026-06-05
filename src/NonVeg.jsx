@@ -27,7 +27,7 @@ function NonVeg() {
   useEffect(() => {
     setLoading(true); 
     api
-      .get("http://54.227.32.25:8082/products/NONVEG")
+      .get("http://54.227.32.25/products/NONVEG")
       .then((response) => {
         console.log(response.data);
         setNonvegItems(response.data);
