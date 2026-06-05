@@ -27,7 +27,7 @@ function Milk() {
   useEffect(() => {
     setLoading(true); 
     api
-      .get("https://food-service-s5lq.onrender.com/products/MILK")
+      .get("http://54.227.32.25:8082/products/MILK")
       .then((response) => {
         console.log(response.data);
         setMilkItems(response.data);
@@ -92,7 +92,13 @@ const [currentPage, setCurrentPage] = useState(1);
 
               <button
                 onClick={() => {
-                  dispatch(addToCart(item));
+                  dispatch(addToCart({
+                   id: item.id,
+                   name: item.name,
+                   price: item.price,
+                   image: item.image,
+                   description: item.description
+                 }));
                   toast.success(`Product ${item.name} added to cart successfully!`);
                 }}
                 className="cart-btn"
