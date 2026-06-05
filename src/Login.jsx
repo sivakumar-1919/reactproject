@@ -16,7 +16,7 @@ function Login() {
   try {
 
     const response = await axios.post(
-      "https://jwt-service-xhpg.onrender.com/api/auth/login",
+      "http://jwttoken.mooo.com:8081/api/auth/login",
       {
         email: data.email,
         password: data.password
@@ -25,19 +25,18 @@ function Login() {
 
       console.log(response.data); 
 
-    localStorage.setItem(
-  "jwtToken",
-  response.data.token
-);
+  localStorage.setItem("jwtToken", response.data.token);
 
 localStorage.setItem(
   "currentUser",
   JSON.stringify({
+    id: response.data.userId,   // ✅ FIXED
     name: response.data.name,
     email: response.data.email
   })
 );
 
+localStorage.setItem("userId", response.data.userId); // ✅ FIXED
 localStorage.setItem("isLoggedIn", "true");
 
 // 🔥 trigger update manually
@@ -59,13 +58,13 @@ navigate("/");
  // ✅ Google Login
   const googleLogin = () => {
     window.location.href =
-      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/google";
+      "http://jwttoken.mooo.com:8081/oauth2/authorization/google";
   };
 
   //  ✅ GitHub LogIn
   const githubLogin = () => {
     window.location.href =
-      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/github";
+      "http://jwttoken.mooo.com:8081/oauth2/authorization/github";
   };
 
   return (
@@ -108,7 +107,7 @@ navigate("/");
   type="button"
   onClick={() =>
     window.location.href =
-      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/google"
+      "http://jwttoken.mooo.com:8081/oauth2/authorization/google"
   }
   className="google-btn"
 >
@@ -120,7 +119,7 @@ navigate("/");
   type="button"
   onClick={() =>
     window.location.href =
-      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/github"
+      "http://jwttoken.mooo.com:8081/oauth2/authorization/github"
   }
   className="github-btn"
 >

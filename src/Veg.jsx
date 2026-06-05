@@ -31,7 +31,7 @@ function Veg() {
   setLoading(true); 
 
   api
-    .get("http://54.227.32.25/products/VEG")
+    .get("http://jwttoken.mooo.com/products/VEG")
     .then((response) => {
       console.log(response.data);
       setVegItems(response.data);
