@@ -16,7 +16,7 @@ function Login() {
   try {
 
     const response = await axios.post(
-      "http://jwttoken.mooo.com:8081/api/auth/login",
+      "https://jwttoken.mooo.com/api/auth/login",
       {
         email: data.email,
         password: data.password
