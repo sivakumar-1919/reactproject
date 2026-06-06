@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://54.227.32.25"
+  baseURL: "https://food-service-s5lq.onrender.com"
 });
 
 // Attach JWT automatically

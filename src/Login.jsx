@@ -58,13 +58,13 @@ navigate("/");
  // ✅ Google Login
   const googleLogin = () => {
     window.location.href =
-      "http://jwttoken.mooo.com:8081/oauth2/authorization/google";
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/google";
   };
 
   //  ✅ GitHub LogIn
   const githubLogin = () => {
     window.location.href =
-      "http://jwttoken.mooo.com:8081/oauth2/authorization/github";
+      "https://jwt-service-xhpg.onrender.com/authorization/github";
   };
 
   return (
@@ -107,7 +107,7 @@ navigate("/");
   type="button"
   onClick={() =>
     window.location.href =
-      "http://jwttoken.mooo.com:8081/oauth2/authorization/google"
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/google"
   }
   className="google-btn"
 >
@@ -119,7 +119,7 @@ navigate("/");
   type="button"
   onClick={() =>
     window.location.href =
-      "http://jwttoken.mooo.com:8081/oauth2/authorization/github"
+      "https://jwt-service-xhpg.onrender.com/oauth2/authorization/github"
   }
   className="github-btn"
 >
