@@ -12,7 +12,7 @@
 .parallax-hero{
   width:100%;
   height:100vh;
-  background-image:url("/vegimages/foodzone.jpg.jpg");
+  /* background-image:url("/vegimages/foodzone.jpg.jpg"); */
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -109,7 +109,7 @@
 /* FLOATING FOOD ANIMATION */
 
 .parallax-hero::after{
-  content:"🍕 🍔 🍟 🍜";
+  /* content:"🍕 🍔 🍟 🍜"; */
   position:absolute;
   bottom:-20px;
   font-size:40px;
@@ -401,6 +401,36 @@ html{
 }
 
 }
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
+  z-index: 0;
+}
 
+/* Make sure overlays are above video */
+.fire-bg {
+  position: absolute;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
 
