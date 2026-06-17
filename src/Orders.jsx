@@ -98,7 +98,11 @@ function Orders() {
       axios
         .get(`https://order-service-olem.onrender.com/orders/user/${user.id}`)
         .then((res) => {
-          setOrders(res.data);
+         setOrders(
+  res.data.sort(
+    (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
+  )
+);
         })
         .catch((err) => console.log(err));
     }
@@ -150,10 +154,18 @@ function Orders() {
                 <strong>Payment:</strong> {order.paymentMethod?.toUpperCase()}
               </p>
 
-              <p>
-                <strong>Date:</strong>{" "}
-                {new Date(order.orderDate).toLocaleString()}
-              </p>
+             <p>
+  <strong>Date:</strong>{" "}
+  {new Date(order.orderDate).toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+  })} IST
+</p>
 
             </div>
 
