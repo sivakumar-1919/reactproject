@@ -198,9 +198,9 @@ function Home() {
   return (
     <div className="home-page">
 
-      <section className="parallax-hero">
+      {/* <section className="parallax-hero">
 
-  <div className="fire-bg"></div>   {/* 🔥 LIVE FIRE */}
+  <div className="fire-bg"></div>  
 
   <div className="hero-overlay"></div>
 
@@ -212,7 +212,32 @@ function Home() {
   </Link>
   </div>
 
+</section> */}
+
+
+<section className="parallax-hero">
+
+  {/* 🎥 VIDEO BACKGROUND (NEW) */}
+  <video className="hero-video" autoPlay muted loop playsInline>
+    <source src="/videos/video.mp4.mp4" type="video/mp4" />
+  </video>
+
+  <div className="fire-bg"></div>   {/* 🔥 LIVE FIRE */}
+
+  <div className="hero-overlay"></div>
+
+  <div className="hero-content">
+    <h1>Welcome to FoodZone</h1>
+    <p>Delicious food delivered to your doorstep 🍽️</p>
+
+    <Link to="/veg" className="hero-btn">
+      Explore Menu
+    </Link>
+  </div>
+
 </section>
+
+
       {/* ABOUT */}
       <section className="about-section">
         <h2>Why Choose FoodZone?</h2>

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Load cart from localStorage when app starts
 const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const CartSlice = createSlice({
@@ -8,29 +7,31 @@ const CartSlice = createSlice({
   initialState: savedCart,
 
   reducers: {
-    // Add to Cart
+
+    // ADD TO CART
     addToCart: (state, action) => {
+
       let existingItem = state.find(
-        (item) => item.name === action.payload.name
+        (item) => item.id === action.payload.id   // ✅ FIX
       );
 
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        let finalObject = {
+        state.push({
           ...action.payload,
           quantity: 1,
-        };
-        state.push(finalObject);
+        });
       }
 
       localStorage.setItem("cart", JSON.stringify(state));
     },
 
-    // Increment Quantity
+    // INCREMENT
     incrementQty: (state, action) => {
+
       let item = state.find(
-        (item) => item.name === action.payload
+        (item) => item.id === action.payload   // ✅ FIX
       );
 
       if (item) {
@@ -40,10 +41,11 @@ const CartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state));
     },
 
-    // Decrement Quantity
+    // DECREMENT
     decrementQty: (state, action) => {
+
       let item = state.find(
-        (item) => item.name === action.payload
+        (item) => item.id === action.payload   // ✅ FIX
       );
 
       if (item && item.quantity > 1) {
@@ -53,21 +55,18 @@ const CartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state));
     },
 
-    // Remove Item
+    // REMOVE ITEM
     removeFromCart: (state, action) => {
+
       const updatedCart = state.filter(
-        (item) => item.name !== action.payload
+        (item) => item.id !== action.payload   // ✅ FIX
       );
 
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(updatedCart)
-      );
-
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
       return updatedCart;
     },
 
-    // Clear Cart
+    // CLEAR CART
     clearCart: () => {
       localStorage.removeItem("cart");
       return [];

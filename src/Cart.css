@@ -27,6 +27,7 @@
   padding: 25px;
   border-radius: 14px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  
 }
 
 /* CART ITEM (IMPROVED) */
@@ -188,35 +189,96 @@ input {
 /* EMPTY CART */
 .empty-cart {
   text-align: center;
-  margin-top: 80px;
-  font-size: 20px;
+  margin-top: 30px;
+  font-size: 60px;
   color: #777;
-  font-weight: 500;
+  padding-bottom: 30px ;
 }
 
-/* LOGIN WARNING */
+
 .login-warning {
-  text-align: center;
-  margin-top: 120px;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .login-box {
-  display: inline-block;
-  padding: 20px;
-  border-radius: 8px;
-  background: #fafafa;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
+/* 🔥 Bigger single-line heading */
 .login-box h2 {
-  font-size: 28px;
+  font-size: 26px;
+  margin-bottom: 20px;
   color: #333;
+  font-weight: 700;
+  white-space: nowrap; /* keeps it in one line */
 }
 
+/* 🔽 Smaller button text */
 .login-box button {
-  background: #4a90e2;
-  color: white;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px; /* smaller than heading */
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
+.login-box button:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
+}
+
+.login-box button:active {
+  transform: scale(0.98);
+}
+
+/* Smooth entry animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 25px 20px;
+  }
+
+  .login-box h2 {
+    font-size: 20px;
+    white-space: normal; /* allow wrap on small screens */
+  }
+
+  .login-box button {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
 /* SUCCESS OVERLAY */
 .success-overlay {
   position: fixed;

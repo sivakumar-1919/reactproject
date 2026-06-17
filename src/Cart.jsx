@@ -9,6 +9,7 @@ import emailjs from "@emailjs/browser";
 import "./Cart.css";
 import { addOrder } from "./OrderSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -107,53 +108,65 @@ function Cart() {
       email: customerEmail,
     };   
 
-    const handleCheckOut = () => {
+   const handleCheckOut = async () => {
 
-  // 1️⃣ Validate payment
   if (!paymentMethod) {
     alert("Please select payment method ❌");
     return;
   }
 
-  // 2️⃣ Validate email
   if (!customerEmail) {
     alert("Please enter your email ❌");
     return;
   }
 
-  emailjs.send(
-    "service_rf4wpfa",
-    "template_covioys",
-    templateParams,
-    "ZWA2bEde1dWfH789D"
-  )
-    .then(() => {
+  const orderData = {
+    userId: Number(localStorage.getItem("userId")),
 
-      const orderData = {
-        items: cartItems,
-        total: finalAmount,
-        paymentMethod,
-        date: new Date().toLocaleString(),
-      };
+    totalAmount: finalAmount,
 
-      dispatch(addOrder(orderData));
-      
+    paymentMethod,
 
-      // ✅ SHOW SUCCESS UI
-      setOrderSuccess(true);
+    orderItems: cartItems.map(item => ({
+      productId: item.id,   // 🔥 MUST exist
+      productName: item.name,
+      quantity: item.quantity,
+      price: item.price,
+      subtotal: item.price * item.quantity
+    }))
+  };
 
-      // ✅ REDIRECT AFTER 3 SECONDS
-      setTimeout(() => {
-        navigate("/orders", { replace: true });
-      }, 3000);
+  try {
 
-    })
-    .catch((error) => {
-      alert("Email sending failed ❌");
-      console.error(error);
-    });
+    // 1️⃣ Send Email
+    await emailjs.send(
+      "service_rf4wpfa",
+      "template_covioys",
+       templateParams,
+      "ZWA2bEde1dWfH789D"
+    );
+
+    // 2️⃣ Save Order in Backend
+    await axios.post(
+      "https://order-service-olem.onrender.com/orders/place",
+      orderData
+    );
+
+    // 3️⃣ Save Redux
+    dispatch(addOrder(orderData));
+
+    // 4️⃣ UI Success
+    setOrderSuccess(true);
+
+    setTimeout(() => {
+      navigate("/orders", { replace: true });
+    }, 3000);
+
+  } catch (error) {
+    console.error(error);
+    alert("Order failed ❌");
+  }
 };
-
   // CART ITEMS
   const listItems = cartItems.map((item, index) => (
     <li key={index}>
@@ -197,16 +210,16 @@ function Cart() {
     </p>
   </div>
 
-                <button className="qty-btn" onClick={() => dispatch(decrementQty(item.name))}>−</button>
+                <button className="qty-btn" onClick={() => dispatch(decrementQty(item.id))}>−</button>
 
                 <span className="qty-number">{item.quantity}</span>
 
-                <button className="qty-btn" onClick={() => dispatch(incrementQty(item.name))}>+</button>
+                <button className="qty-btn" onClick={() => dispatch(incrementQty(item.id))}>+</button>
 
                 <button
                   className="remove-btn"
                   onClick={() => {
-                    dispatch(removeFromCart(item.name));
+                    dispatch(removeFromCart(item.id));
                     toast.error(`${item.name} removed`);
                   }}
                 >
