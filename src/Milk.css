@@ -82,3 +82,22 @@
 .milk-container .card:hover img {
   transform: scale(1.1);
 }
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .milk-container .card,
+  .milk-container .card-body {
+    background: #1f1f1f;
+  }
+
+  .milk-container .card-body h2 {
+    color: #ffffff;
+  }
+
+  .milk-container .card-body p {
+    color: #d1d1d1;
+  }
+
+}

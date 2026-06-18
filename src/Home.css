@@ -434,3 +434,80 @@ html{
   z-index: 3;
 }
 
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .about-section {
+    background: #121212;
+  }
+
+  .about-section h2,
+  .about-section h3,
+  .about-section p {
+    color: #ffffff;
+  }
+
+  .about-card {
+    background: #1f1f1f;
+  }
+
+  .about-card h3,
+  .about-card p {
+    color: #ffffff;
+  }
+
+  .popular-section {
+    background: #121212;
+  }
+
+  .popular-section h2,
+  .popular-card h4 {
+    color: #ffffff;
+  }
+
+  .popular-card {
+    background: #1f1f1f;
+  }
+
+  .offer-banner {
+    color: #ffffff;
+  }
+
+  .offer-btn {
+    background: #2c2c2c;
+    color: #ffffff;
+  }
+
+  .offer-btn:hover {
+    background: #3a3a3a;
+  }
+
+  .testimonials {
+    background: #121212;
+  }
+
+  .testimonials h2 {
+    color: #ffffff;
+  }
+
+  .test-card {
+    background: #1f1f1f;
+  }
+
+  .test-card p,
+  .test-card h4 {
+    color: #ffffff;
+  }
+
+  .contact-strip {
+    background: #000000;
+  }
+
+  .contact-strip h2,
+  .contact-strip p {
+    color: #ffffff;
+  }
+
+}
+

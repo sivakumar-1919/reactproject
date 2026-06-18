@@ -167,3 +167,58 @@
     font-size: 13px;
   }
 }
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .orders-page {
+    background: #121212;
+  }
+
+  .orders-title {
+    color: #ffffff;
+  }
+
+  .no-orders {
+    color: #d1d1d1;
+  }
+
+  .order-card {
+    background: #1f1f1f;
+    border: 1px solid #333;
+  }
+
+  .items-box {
+    background: #2b2b2b;
+    border: 1px solid #444;
+  }
+
+  .items-box h4 {
+    color: #ffffff;
+  }
+
+  .item-row {
+    color: #ffffff;
+    border-bottom: 1px dashed #555;
+  }
+
+  .item-row span {
+    color: #ffffff;
+  }
+
+  .qty {
+    background: #0d47a1;
+    color: #ffffff;
+  }
+
+  .order-details {
+    color: #ffffff;
+    border-top: 1px solid #444;
+  }
+
+  .order-details p {
+    color: #ffffff;
+  }
+
+}

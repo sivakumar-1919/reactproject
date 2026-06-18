@@ -1,36 +1,38 @@
 /* PAGE BACKGROUND */
+/* PAGE BACKGROUND */
 .register-page{
-  position: relative;                 /* ✅ FIXED (was fixed) */
-  margin-top: 0;                   /* below navbar */
+  position: relative;
+  margin-top: 0;
 
   width: 100%;
-  min-height: calc(100vh - 70px);     /* ✅ allow scrolling */
+  min-height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: linear-gradient(135deg,#1d2b64,#f8cdda);
+  background: #f5f5f5;   /* Same light background as Login */
   font-family: 'Segoe UI', sans-serif;
 
-  padding: 20px;                      /* ✅ prevents edge cut */
+  padding: 20px;
   box-sizing: border-box;
 
-  overflow-y: auto;                   /* ✅ scroll enabled */
+  overflow-y: auto;
 }
 
 /* GLASS EFFECT CARD */
+/* REGISTER CARD */
 .register-box{
   width: 100%;
-  max-width: 380px;                   /* ✅ responsive */
+  max-width: 380px;
   padding: 40px;
-  border-radius: 15px;
-  
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+
   text-align: center;
-  color: white;
+  color: #333;
 }
 
 /* TITLE */
@@ -42,43 +44,39 @@
 /* INPUTS */
 .register-box input{
   width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;                /* ✅ adjusted for error msg */
-  border-radius: 8px;
-  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #242222;
   outline: none;
-  background: rgba(255,255,255,0.2);
-  color: white;
+  background: white;
+  color: #333;
   font-size: 15px;
 }
 
-/* INPUT PLACEHOLDER */
 .register-box input::placeholder{
-  color: #eee;
+  color: #777;
 }
 
-/* INPUT FOCUS */
 .register-box input:focus{
-  background: rgba(255,255,255,0.3);
+  border-color: #4facfe;
 }
-
 /* BUTTON */
 .register-box button{
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: none;
-  border-radius: 25px;
+  border-radius: 6px;
   font-size: 16px;
-  background: linear-gradient(45deg,#ff512f,#dd2476);
+  background: #4facfe;
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
-/* BUTTON HOVER */
 .register-box button:hover{
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  background: #2f80ed;
+  transform: scale(1.03);
 }
 
 /* LOGIN TEXT */
@@ -115,4 +113,42 @@
   .register-box h2{
     font-size: 22px;
   }
+}
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .register-page {
+    background: #121212;
+  }
+
+  .register-box {
+    background: #1f1f1f;
+    color: #ffffff;
+  }
+
+  .register-box h2,
+  .login-text {
+    color: #ffffff;
+  }
+
+  .register-box input {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+
+  .register-box input::placeholder {
+    color: #bdbdbd;
+  }
+
+  .login-link {
+    color: #66b3ff;
+  }
+
+  .error {
+    color: #ff6b6b;
+  }
+
 }

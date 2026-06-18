@@ -392,3 +392,80 @@ input {
   align-items: center;
   gap: 6px;
 }
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .page-center {
+    background: #121212;
+  }
+
+  .cart-left,
+  .bill-container,
+  .cart-item,
+  .login-box {
+    background: #1f1f1f;
+  }
+
+  .bill-container {
+    border: 1px solid #333;
+  }
+
+  .cart-item {
+    border: 1px solid #333;
+  }
+
+  .cart-left h2,
+  .bill-container h2,
+  .bill-container h3,
+  .cart-item h3,
+  .cart-item h4,
+  .cart-item p,
+  .bill-row,
+  .item-total,
+  .final-amount,
+  .empty-cart,
+  .login-box h2,
+  .upi-box h3,
+  .upi-box p {
+    color: #ffffff;
+  }
+
+  .final-amount {
+    background: #234d20;
+  }
+
+  .bill-row {
+    border-bottom: 1px dashed #555;
+  }
+
+  input {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+
+  input::placeholder {
+    color: #bdbdbd;
+  }
+
+  .upi-box {
+    background: #2b2b2b;
+  }
+
+  .cod-badge {
+    background: #234d20;
+    color: #ffffff;
+    border: 1px solid #4caf50;
+  }
+
+  .login-warning {
+    background: #121212;
+  }
+
+  .cart-img-box img {
+    border: 1px solid #555;
+  }
+
+}

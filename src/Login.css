@@ -121,3 +121,62 @@
   color: #24292e; /* GitHub black */
   font-size: 22px;
 }
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .login-container {
+    background: #121212;
+  }
+
+  .login-form {
+    background: #1f1f1f;
+    color: #ffffff;
+  }
+
+  .login-form h2,
+  .login-form p,
+  .register-text {
+    color: #ffffff;
+  }
+
+  .login-form input {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+
+  .login-form input::placeholder {
+    color: #bdbdbd;
+  }
+
+  .register-link {
+    color: #66b3ff;
+  }
+
+  .google-btn {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+
+  .google-btn:hover {
+    background: #3a3a3a;
+  }
+
+  .github-btn {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+
+  .github-btn:hover {
+    background: #3a3a3a;
+  }
+
+  .github-btn i {
+    color: #ffffff;
+  }
+
+}

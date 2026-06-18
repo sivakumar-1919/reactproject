@@ -156,3 +156,58 @@
   }
 
 }
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .contact-container {
+    background: #121212;
+  }
+
+  .contact-title {
+    color: #ffffff;
+  }
+
+  .contact-subtitle {
+    color: #d1d1d1;
+  }
+
+  .info-card {
+    background: #1f1f1f;
+    color: #ffffff;
+  }
+
+  .info-card h3,
+  .info-card p {
+    color: #ffffff;
+  }
+
+  .info-card:hover {
+    background: #2e7d32;
+    color: #ffffff;
+  }
+
+  .contact-form {
+    background: #1f1f1f;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #bdbdbd;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: #4ca1af;
+    box-shadow: 0 0 5px rgba(76,161,175,0.5);
+  }
+
+}

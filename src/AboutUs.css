@@ -60,3 +60,37 @@
 .feature-card:hover{
   transform:translateY(-5px);
 }
+
+/* ===================== DARK MODE ===================== */
+
+@media (prefers-color-scheme: dark) {
+
+  .about-page {
+    background: #121212;
+  }
+
+  .about-content {
+    background: #121212;
+  }
+
+  .about-section h2 {
+    color: #ffffff;
+  }
+
+  .about-section p {
+    color: #d1d1d1;
+  }
+
+  .feature-card {
+    background: #1f1f1f;
+  }
+
+  .feature-card h3 {
+    color: #ffffff;
+  }
+
+  .feature-card p {
+    color: #d1d1d1;
+  }
+
+}

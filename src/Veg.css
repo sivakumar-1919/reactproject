@@ -102,3 +102,47 @@ body {
   text-align: center;
   padding: 20px;
 }
+
+/* ================= DARK MODE ================= */
+
+@media (prefers-color-scheme: dark) {
+
+  body {
+    background: #121212;
+    color: #ffffff;
+  }
+
+  .veg-container .card {
+    background: #1f1f1f;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+  }
+
+  .veg-container .card-body {
+    background: #1f1f1f;
+  }
+
+  .veg-container .card-body h2 {
+    color: #ffffff;
+  }
+
+  .veg-container .card-body h3 {
+    color: #4caf50;
+  }
+
+  .veg-container .card-body p {
+    color: #d0d0d0;
+  }
+
+  .veg-container .cart-btn {
+    background: #ff7043;
+    color: white;
+  }
+
+  .veg-container .cart-btn:hover {
+    background: #ff5722;
+  }
+
+  .loading-container {
+    color: white;
+  }
+}
